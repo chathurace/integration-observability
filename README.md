@@ -43,3 +43,22 @@ helm install fluent-bit fluent/fluent-bit --version 0.43.0 -n observability -f <
     2. Navigate to *Dashboard management -> Saved objects* menu
     3. Click *Import* link and import the `<repo-path>/observability/dashboards/integration-dashboards.ndjson` file.
     4. Navigate to *Dashbaords* menu and you will see two dashbaords for WSO2 Micro Integrator and Ballerina.
+
+## Trying out the solution
+
+A set of sample Ballerina and Micro Integrator deployments are included to try out this solution. These samples generate logs with different log levels depending on the request payload.
+
+1. Navigate to the `<repo-path>/samples` folder and execute `sh deploy_samples.sh`. This will build and deploy all samples in the Kubernetes cluster.
+
+2. Port forward 8290 and 9100, which are used by MI and Ballerina deployments.
+```
+kubectl port-forward svc/bookpark-svc 8290:8290
+kubectl port-forward svc/portal-svc 9100:9100
+```
+
+3. Import `<repo-path>/samples/postman/Integration_Observability.postman_collection.json` to Postman. This contains various requests that cause deployed MI and Ballerina pods to emit different log messages.
+
+4. Navigate to `Dashboards -> Ballerina - Dashboard` in the OpenSearch portal to view log analytics of Ballerina pods.
+
+5. Navigate to `Dashboards -> MI - Dashboard` in the OpenSearch portal to view log analytics of MI pods.
+
