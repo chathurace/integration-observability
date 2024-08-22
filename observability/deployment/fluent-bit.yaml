@@ -3,7 +3,7 @@ config:
         [PARSER]
             Name   bal_parser
             Format regex
-            Regex  ^time=(?<time>[^\s]+)\s+level=(?<level>[^\s]+)\s+module=(?<module>[^\s]+)\s+message="(?<message>.*)"$
+            Regex  ^time=(?<time>[^\s]+)\slevel=(?<level>[^\s]+)\smodule=(?<module>[^\s]+)\smessage="(?<message>[^"]+)"(?:\serror=(?<error>.*))?$
             Time_Key time
             Time_Format %Y-%m-%dT%H:%M:%S.%L%z
 

@@ -1,4 +1,4 @@
-# Deploying the WSO2 integration observability solution
+# WSO2 Integration Observability Solution
 
 ## Pre-requisites
 - Kubernetes cluster
