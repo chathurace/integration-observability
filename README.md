@@ -38,11 +38,17 @@ helm repo update
 helm install fluent-bit fluent/fluent-bit --version 0.43.0 -n observability -f <repo-path>/observability/deployment/fluent-bit.yaml
 ```
 
+7. Deploy Data Prepper by running the following command from the `<repo-path>/observability/deployment/` directory:
+```
+helm install wso2-observability wso2-observability
+```
+
 7. Follow the following steps to deploy integration dashboards:
     1. Log in to the OpenSearch dashboard at URL [http://localhost:5601](http://localhost:5601) using the default credentials *(username: admin, password: admin)*
     2. Navigate to *Dashboard management -> Saved objects* menu
     3. Click *Import* link and import the `<repo-path>/observability/dashboards/integration-dashboards.ndjson` file.
     4. Navigate to *Dashbaords* menu and you will see two dashbaords for WSO2 Micro Integrator and Ballerina.
+    5. Navigate to the *Traces* menu under the *Observability* section to see trace analytics.
 
 ## Trying out the solution
 
@@ -61,3 +67,5 @@ kubectl port-forward svc/portal-svc 9100:9100
 4. Navigate to `Dashboards -> Ballerina - Dashboard` in the OpenSearch portal to view log analytics of Ballerina pods.
 
 5. Navigate to `Dashboards -> MI - Dashboard` in the OpenSearch portal to view log analytics of MI pods.
+
+6. Navigate to the `Traces` menu under the `Observability` section to see traces and service maps derived from traces.
