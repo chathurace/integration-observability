@@ -61,4 +61,3 @@ kubectl port-forward svc/portal-svc 9100:9100
 4. Navigate to `Dashboards -> Ballerina - Dashboard` in the OpenSearch portal to view log analytics of Ballerina pods.
 
 5. Navigate to `Dashboards -> MI - Dashboard` in the OpenSearch portal to view log analytics of MI pods.
-

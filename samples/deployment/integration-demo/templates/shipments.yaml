@@ -33,7 +33,10 @@ spec:
         product: "wso2ballerina"
     spec:
       containers:
-      - image: "tmart/shipments:v1"
+      - env:
+        - name: "BAL_CONFIG_FILES"
+          value: "/home/ballerina/conf/Config.toml:"
+        image: "tmart/shipments:v1"
         lifecycle:
           preStop:
             exec:
@@ -52,6 +55,14 @@ spec:
           requests:
             memory: "100Mi"
             cpu: "200m"
+        volumeMounts:
+        - mountPath: "/home/ballerina/conf/"
+          name: "shipments-configmap-volume"
+          readOnly: false
+      volumes:
+      - configMap:
+          name: "shipments-configmap"
+        name: "shipments-configmap-volume"
 ---
 apiVersion: "autoscaling/v2"
 kind: "HorizontalPodAutoscaler"
@@ -73,3 +84,11 @@ spec:
     apiVersion: "apps/v1"
     kind: "Deployment"
     name: "shipments-deployment"
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "shipments-configmap"
+data:
+  Config.toml: |
+{{ .Files.Get "files/shipments-config.toml" | indent 4 }}

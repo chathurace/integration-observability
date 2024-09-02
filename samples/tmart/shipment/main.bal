@@ -1,5 +1,6 @@
 import ballerina/log;
 import ballerina/http;
+import ballerinax/jaeger as _;
 
 type Shipment record {|
     string orderId;

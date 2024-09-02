@@ -1,5 +1,6 @@
 import ballerina/http;
 import ballerina/log;
+import ballerinax/jaeger as _;
 
 map<string> customersMap = {
     "Peter": "5, Park Street, Brisbane",

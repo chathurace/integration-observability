@@ -20,8 +20,8 @@ kind: "ConfigMap"
 metadata:
   name: "portal-config-map"
 data:
-  Config.toml: "shipmentHost = \"shipments-svc\"\ncrmHost = \"crm-svc\"\ninventoryHost\
-    \ = \"inventory-svc\"\n"
+  Config.toml: |
+{{ .Files.Get "files/portal-config.toml" | indent 4 }}
 ---
 apiVersion: "apps/v1"
 kind: "Deployment"

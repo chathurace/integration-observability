@@ -20,7 +20,8 @@ kind: "ConfigMap"
 metadata:
   name: "inventory-config-map"
 data:
-  Config.toml: "shipmentHost = \"shipments-svc\"\n"
+  Config.toml: |
+{{ .Files.Get "files/inventory-config.toml" | indent 4 }}
 ---
 apiVersion: "apps/v1"
 kind: "Deployment"
